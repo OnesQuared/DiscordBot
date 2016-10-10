@@ -1,0 +1,11 @@
+        private void registerPurgeCommand()
+        {
+            commands.CreateCommand("purge")
+                .Do(async (e) =>
+                {
+                    Message[] messageToDelete;
+                    messageToDelete = await e.Channel.DownloadMessages(100);
+
+                    await e.Channel.DeleteMessages(messageToDelete);
+                });
+        }
