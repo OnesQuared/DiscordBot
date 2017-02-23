@@ -1,0 +1,36 @@
+//variables
+const discord = require('discord.js');
+const bot = new discord.Client();
+var newUsers = new discord.Collection();
+
+bot.on("ready", () => {
+    console.log(`Ready to server in ${bot.channels.size} channels on ${bot.guilds.size} servers, for a total of ${bot.users.size} users.`);
+});
+
+bot.on("guildMemberAdd", (member) => {
+    console.log(`New User "${member.user.username}" has joined "${member.guild.name}"` );
+    member.guild.defaultChannel.sendMessage(`Welcome to No Thanks - Firetree "${member.user.username}"!`);
+});
+
+bot.on('message', (msg) => {
+
+    var prefix = "!";
+
+    //check for prefix
+    if (!msg.content.startsWith(prefix)) return;
+
+    //exit if any bot?
+    if (msg.author.bot) return;
+
+    //commands
+    if (msg.content.startsWith(prefix + "ping")) {
+        msg.channel.sendMessage('pong');
+    }
+
+    
+
+
+
+})
+
+bot.login('');
